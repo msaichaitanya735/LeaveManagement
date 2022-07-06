@@ -3,17 +3,15 @@ const User = require('../modules/user');
 
 exports.register = async(req,res,next)=>{
     const {userid, email, password}=req.body;
+    console.log('regsiter')
     try {
        const user = await User.create({
            userid, email,password
        })
-        // res.status(201).json({
-        //     success: true,
-        //     user,
-        // });
+        console.log('success')
         sendToken(user,201,res);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: error.message,
         })
@@ -23,7 +21,7 @@ exports.register = async(req,res,next)=>{
 exports.login = async(req,res,next)=>{
     const { email, password}= req.body;
     if(!email||!password){
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             error: "Please provide email and password"
         })
@@ -31,7 +29,7 @@ exports.login = async(req,res,next)=>{
     try {
         const user = await User.findOne({email}).select("+password");
         if(!user){
-            res.send(404).json({
+            return res.send(404).json({
                 success:false,
                 error: "Invalid credentials"
             })
@@ -39,7 +37,7 @@ exports.login = async(req,res,next)=>{
 
         const isMatch = await user.matchPasswords(password)
         if(!isMatch){
-            res.status(404).json({
+            return res.status(404).json({
                 success: false,
                 error: "Invalid credentials"
             })
@@ -52,7 +50,7 @@ exports.login = async(req,res,next)=>{
         sendToken(user,200,res);
 
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error:error.message
         })

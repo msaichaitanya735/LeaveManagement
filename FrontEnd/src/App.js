@@ -25,10 +25,10 @@ function App() {
     <Provider store={store}>
     <Router>
     <Route exact path="/" component={HomePage}/>
-    <PrivateRoute exact path="/user" component={User}/>
+    <Route exact path="/user" component={User}/>
     <PrivateRoute exact path="/user/leave" component={Leaveform}/>
     <PrivateRoute exact path="/user/myleaves" component={Myleaves}/>
-    <AdminProtectRoute exact path="/Admin" component={Admin}/>
+    <Route exact path="/Admin" component={Admin}/>
     <AdminProtectRoute exact path="/admin/pendingrequest" component={Admintable}/>
     <AdminProtectRoute exact path="/admin/approvedrequest" component={Adminapprovedtable}/>
     <AdminProtectRoute exact path="/admin/requestview" component={AdminRequestView}/>

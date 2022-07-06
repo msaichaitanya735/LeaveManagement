@@ -4,7 +4,7 @@ exports.requestleave = async(req,res,next)=>{
     const {from,email,leavetype, subject, reason, startdate, enddate}= req.body;
     var start = new Date(startdate)
     var end = new Date(enddate)
-    var days = Math.abs(start.getDate( )-end.getDate( ))
+    var days = Math.abs(start.getDate( )-end.getDate( )+1)
     console.log(days)
     try {
         const leaverequest = await Leaveform.create({

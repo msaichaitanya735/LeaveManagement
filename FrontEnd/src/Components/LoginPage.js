@@ -20,11 +20,6 @@ const LoginPage = (props) => {
            email:email,
            password:password
        }
-       const config={
-           header:{
-               "Content-Type":"application/json"
-           }
-       }
         axios.post('http://localhost:5000/api/auth/login',log).then(async(res)=>{
                 localStorage.setItem("authToken",res.data.token)
                 props.dispatch({type:'AddToken',payload:res.data.token})

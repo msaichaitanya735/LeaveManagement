@@ -6,14 +6,6 @@ import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 function AdminRequestView() {
-// const [from     ,setFrom     ]=useState('')
-// const [email    ,setEmail    ]=useState('')
-// const [leavetype,setLeavetype]=useState('')
-// const [subject  ,setSubject  ]=useState('')
-// const [reason   ,setReason   ]=useState('')
-// const [startdate,setStartdate]=useState('')
-// const [enddate  ,setEnddate  ]=useState('')
-// const [status   ,setStatus   ]=useState('')
   const [data,setData]=useState({})
   const history = useHistory()
 
@@ -42,12 +34,8 @@ function AdminRequestView() {
     axios.get(`http://localhost:5000/api/user/viewrequest?id=${localStorage.getItem('reqid')}`,config).then((res)=>
     {
       setData(res.data[0])
-      // console.log(res.data)
 },[])
-// axios.get('http://localhost:5000/api/user/getpending',config).then((res)=>{
-//     setPending(res.data)
-//     // console.log(res.data)
-// },[])
+
 })
     const handelapprove=()=>{
       const response={
@@ -75,6 +63,7 @@ function AdminRequestView() {
         status   :'Rejected'  
       }
       axios.put(`http://localhost:5000/api/user/respondrequest?id=${localStorage.getItem('reqid')}`,response,config).then((res)=>console.log('Rejected'))
+      showpending();
     }
     
     return (
@@ -105,8 +94,8 @@ function AdminRequestView() {
               <h3>From :      <span>{data.from}</span></h3>
               <h3>Email :      <span>{data.email}</span></h3>
               <h3>LeaveType :      <span>{data.leavetype}</span></h3>
-              <h3>Subject :      <span>{data.subject}</span></h3>
-              <h3>Reason :      <span>{data.enddate}</span></h3>
+              <h3>Subject :      <span>{data.subject}</span></h3>{console.log({data})}
+              <h3>Reason :      <span>{data.reason}</span></h3>
               <h3>Start Date :      <span>{data.startdate}</span></h3>
               <h3>End Date :      <span>{data.enddate}</span></h3>  
               </div>

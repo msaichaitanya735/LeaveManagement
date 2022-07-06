@@ -4,17 +4,17 @@ const { requestleave, getallleaves, getpending, getapproved, viewrequest, respon
 const { protect } = require('../middleware/auth')
 const router = express.Router()
 
-router.route('/requestleave').post(protect,requestleave);
+router.route('/requestleave').post( requestleave);
 
-router.route('/getallleaves').get(protect,getallleaves)
+router.route('/getallleaves').get(getallleaves)
 
-router.route('/getpending').get(protect,getpending)
-router.route('/getapproved').get(protect,getapproved)
-router.route('/viewrequest').get(protect,viewrequest)
-router.route('/respondrequest').put(protect,respondrequest)
-router.route('/myleaves').get(protect,myleaves)
-router.route('/myapprovedleaves').get(protect,myapprovedleaves)
-router.route('/mypendingleaves').get(protect,mypendingleaves)
+router.route('/getpending').get( getpending)
+router.route('/getapproved').get( getapproved)
+router.route('/viewrequest').get( viewrequest)
+router.route('/respondrequest').put( respondrequest)
+router.route('/myleaves').get( myleaves)
+router.route('/myapprovedleaves').get( myapprovedleaves)
+router.route('/mypendingleaves').get( mypendingleaves)
 router.route('/lastlogin').put(lastlogin)
 
 

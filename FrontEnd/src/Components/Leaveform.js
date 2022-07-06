@@ -30,6 +30,7 @@ const Leaveform = () => {
             enddate:enddate
         }
         axios.post('http://localhost:5000/api/user/requestleave',leave_request,config).then((res)=>console.log(res.data))
+        history.push('/user')
     })
     const handleLogout=()=>{
         axios.put(`http://localhost:5000/api/user/lastlogin?id=${localStorage.getItem('id')}`).then((res)=>console.log("logged out"))

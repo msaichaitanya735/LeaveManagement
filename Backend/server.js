@@ -10,6 +10,7 @@ app.use(express.json())
 app.use(cors())
 
 
+
 mongoose.connect("mongodb://admin:12345@cluster0-shard-00-00.ea3td.mongodb.net:27017,cluster0-shard-00-01.ea3td.mongodb.net:27017,cluster0-shard-00-02.ea3td.mongodb.net:27017/LeaveManagement?ssl=true&replicaSet=atlas-k7lqec-shard-0&authSource=admin&retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>console.log("MongoDB is connected"))
 .catch(err=>{
@@ -20,9 +21,14 @@ mongoose.connect("mongodb://admin:12345@cluster0-shard-00-00.ea3td.mongodb.net:2
 app.use('/api/auth',router)
 app.use('/api/user',userdata)
 
+app.get('/hi',(req,res)=>{
+    res.send('Hello');
+    console.log("reached")
+})
+
 const server = app.listen(PORT,()=>console.log("App is running on port:",PORT))
 
-process.on("unhandledRejection",(err,promise)=>{
-    console.log(`Logged Error:${err}`);
-    server.close(()=>process.exit(1));
-})
+// process.on("unhandledRejection",(err,promise)=>{
+//     console.log(`Logged Error:${err}`);
+//     server.close(()=>process.exit(1));
+// })
